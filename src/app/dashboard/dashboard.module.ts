@@ -6,6 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { StudentsModule } from './pages/students/students.module';
+import { SharedModule } from '../shared/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StudentsModule } from './pages/students/students.module';
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    StudentsModule
+    StudentsModule,
+    SharedModule
   ],
   exports: [
     DashboardComponent
