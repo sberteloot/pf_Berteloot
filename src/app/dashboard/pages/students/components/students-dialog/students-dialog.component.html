@@ -1,0 +1,45 @@
+<main class="student__dialog">
+
+    <h1 mat-dialog-title appTitles><span class="dialogTitle">Crear Usuario</span></h1>
+
+    <div mat-dialog-content>
+
+        <form [formGroup]="studentFormGroupModel" class="row">
+            
+            <!-- CAMPO NOMBRE -->
+            <mat-form-field  appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="name" matInput type="text" name="name" />
+                <mat-icon matSuffix>face</mat-icon>
+            </mat-form-field>
+
+            <!-- CAMPO APELLIDO -->
+            <mat-form-field  appearance="outline">
+                <mat-label>Apellido</mat-label>
+                <input formControlName="surname" matInput type="text" name="surname" />
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+
+            <!-- CAMPO EMAIL -->
+            <mat-form-field  appearance="outline">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput type="email" name="email" />
+                <mat-icon matSuffix>alternate_email</mat-icon>
+            </mat-form-field>
+
+            <!-- CAMPO FECHA NACIMIENTO -->
+            <mat-form-field  appearance="outline">
+                <mat-label>Fecha Nacimiento</mat-label>
+                <input formControlName="birth" matInput type="date" name="birth" />
+                <mat-icon matSuffix>calendar_month</mat-icon>
+            </mat-form-field>            
+
+        </form>
+
+    </div>
+
+    <div class="student__dialog__actions">
+        <button mat-button (click)="closeDialog()">Cancelar</button>
+        <button mat-button (click)="enviarDialog()">Cerrar</button>
+    </div>
+</main>
