@@ -5,7 +5,7 @@ import { StudentsListComponent } from './components/students-list/students-list.
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
-import { SharedModule } from 'src/app/shared/shared/shared.module';
+import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { CustomDateAdapter } from 'src/app/shared/adapters/customdateadapter';
 
 @NgModule({
