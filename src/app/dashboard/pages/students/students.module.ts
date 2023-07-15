@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { StudentsComponent } from './students.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
-import { NamesurnamePipe } from 'src/app/shared/pipes/namesurname.pipe';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { SharedModule } from 'src/app/shared/shared/shared.module';
+import { CustomDateAdapter } from 'src/app/shared/adapters/customdateadapter';
 
 @NgModule({
   declarations: [
-    NamesurnamePipe,
     StudentsComponent,
     StudentsListComponent,
     StudentsDialogComponent
@@ -21,6 +21,10 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   exports : [
     StudentsComponent
-  ]
+  ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+    {provide: DateAdapter, useClass: CustomDateAdapter }
+  ]  
 })
 export class StudentsModule { }

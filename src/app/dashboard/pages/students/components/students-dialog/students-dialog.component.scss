@@ -4,7 +4,15 @@
 
 .student__dialog__actions{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.student__dialog_error{
+    display: inline;
+}
+
+.student__dialog__button__active{
+    border: 2px solid rgba($color: #000000, $alpha: 0.2)
 }
 
 .dialogTitle{

@@ -4,42 +4,75 @@
 
     <div mat-dialog-content>
 
-        <form [formGroup]="studentFormGroupModel" class="row">
+        <form [formGroup]="studentFormGroupModel" class="row" autocomplete="none">
             
             <!-- CAMPO NOMBRE -->
-            <mat-form-field  appearance="outline">
+            <mat-form-field class="mb-3" appearance="outline">
                 <mat-label>Nombre</mat-label>
-                <input formControlName="name" matInput type="text" name="name" />
-                <mat-icon matSuffix>face</mat-icon>
+                <input appAutocompleteOff formControlName="name" matInput type="text" id="name" />
+                <mat-icon [color]="'accent'"  matPrefix>face</mat-icon>
+                <mat-error class="student__dialog_error" *ngFor="let error of nameFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
             </mat-form-field>
 
             <!-- CAMPO APELLIDO -->
-            <mat-form-field  appearance="outline">
+            <mat-form-field  class="mb-3" appearance="outline">
                 <mat-label>Apellido</mat-label>
-                <input formControlName="surname" matInput type="text" name="surname" />
-                <mat-icon matSuffix>badge</mat-icon>
+                <input appAutocompleteOff formControlName="surname" matInput type="text" id="surname" />
+                <mat-icon [color]="'accent'"  matPrefix>badge</mat-icon>
+                <mat-error class="student__dialog_error" *ngFor="let error of surnameFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>                
             </mat-form-field>
 
             <!-- CAMPO EMAIL -->
-            <mat-form-field  appearance="outline">
+            <mat-form-field  class="mb-3" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input formControlName="email" matInput type="email" name="email" />
-                <mat-icon matSuffix>alternate_email</mat-icon>
+                <input appAutocompleteOff formControlName="email" matInput type="email" id="email" />
+                <mat-icon [color]="'accent'" matPrefix>alternate_email</mat-icon>
+                <mat-error class="student__dialog_error" *ngFor="let error of emailFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
             </mat-form-field>
 
             <!-- CAMPO FECHA NACIMIENTO -->
-            <mat-form-field  appearance="outline">
+            <mat-form-field  class="mb-3" appearance="outline">
                 <mat-label>Fecha Nacimiento</mat-label>
-                <input formControlName="birth" matInput type="date" name="birth" />
-                <mat-icon matSuffix>calendar_month</mat-icon>
-            </mat-form-field>            
+                <input appAutocompleteOff matInput formControlName="birth"  
+                    [matDatepicker]="birthPicker"
+                    [max]="maxDateBirthPicker"
+                    (click)="birthPicker.open()"
+                    id="birth"
+                />
+                <mat-datepicker-toggle matIconPrefix [for]="birthPicker"></mat-datepicker-toggle>
+                <mat-datepicker #birthPicker startView="multi-year"></mat-datepicker>
+                <mat-error class="student__dialog_error" *ngFor="let error of birthFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>         
+                <!--<pre>{{ birthFormControl.errors | keyvalue | json }}</pre>       -->
+            </mat-form-field>
 
         </form>
 
     </div>
 
     <div class="student__dialog__actions">
-        <button mat-button (click)="closeDialog()">Cancelar</button>
-        <button mat-button (click)="enviarDialog()">Cerrar</button>
+
+        <button mat-button (click)="clearForm()" tabindex="-1">
+            <mat-icon>clear</mat-icon>Borrar Datos
+        </button>
+
+        <div>
+            <button mat-button (click)="closeDialog()" tabindex="-1">
+                <mat-icon>cancel</mat-icon> Cancelar
+            </button>
+            
+            <button mat-button class="student__dialog__button__active" (click)="enviarDialog()">
+                <mat-icon>save</mat-icon> Guardar
+            </button>
+        </div>
+
     </div>
+
 </main>
