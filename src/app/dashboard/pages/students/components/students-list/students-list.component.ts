@@ -14,6 +14,9 @@ export class StudentsListComponent {
 
   @Output()
   onDeleteStudent = new EventEmitter<IStudent>();
+
+  @Output()
+  onEditStudent = new EventEmitter<IStudent>();
   
   displayedColumns: string[] = ['id', 'namesurname', 'email', 'birth', 'actions']; 
 }

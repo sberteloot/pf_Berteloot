@@ -56,9 +56,27 @@ export class StudentsComponent {
       });
   }
 
-  onEditStudent(student : IStudent){
-    console.log(student);
-    
+  onEditStudent(studentToEdit : IStudent){
+    this.studentDialog
+      .open(StudentsDialogComponent, 
+        {
+          panelClass: 'student__dialog__panel',
+          data: studentToEdit
+        })
+      .afterClosed()
+      .subscribe({
+          next: (student) => {
+
+            if (student) {
+              this.arrayStudents = this.arrayStudents.map((obj) => {
+                return obj.id === studentToEdit.id
+                  ? { ...obj, ...student } 
+                  : obj; 
+              });
+            }
+          }
+
+      });    
   }
 
   onDeleteStudent(student : IStudent){

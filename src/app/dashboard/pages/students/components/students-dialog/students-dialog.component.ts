@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { IStudent } from '../../models/student';
 
 @Component({
   selector: 'app-students-dialog',
@@ -10,21 +11,21 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class StudentsDialogComponent implements OnInit {
 
   // Controles
-  nameFormControl = new FormControl(null, 
+  nameFormControl = new FormControl<string | null>(null, 
     [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50)
     ]
   );
-  surnameFormControl = new FormControl(null, 
+  surnameFormControl = new FormControl<string | null>(null, 
     [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50)      
     ]
   );
-  emailFormControl = new FormControl(null, 
+  emailFormControl = new FormControl<string | null>(null, 
     [
       Validators.required, 
       Validators.email,
@@ -32,7 +33,7 @@ export class StudentsDialogComponent implements OnInit {
       Validators.maxLength(50)      
     ]
   );
-  birthFormControl = new FormControl(null, 
+  birthFormControl = new FormControl<Date | null>(null, 
     [
       Validators.required
     ]
@@ -46,8 +47,19 @@ export class StudentsDialogComponent implements OnInit {
   });
 
   maxDateBirthPicker : Date = new Date();
-  
-  constructor(private dialogRef: MatDialogRef<any>){}
+  dialogTitle : string = "Nuevo Alumno";
+
+  constructor(private dialogRef: MatDialogRef<StudentsDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) private data? : IStudent){
+
+                if(data){
+                  this.nameFormControl.setValue(data.name);
+                  this.surnameFormControl.setValue(data.surname);
+                  this.emailFormControl.setValue(data.email);
+                  this.birthFormControl.setValue(data.birth);
+                  this.dialogTitle = "Modificar Alumno";
+                }
+            }
 
   ngOnInit() {
     this.maxDateBirthPicker.setFullYear(this.maxDateBirthPicker.getFullYear() - 12);
