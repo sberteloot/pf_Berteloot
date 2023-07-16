@@ -13,13 +13,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorsFormsControlsPipe } from '../pipes/errors-forms-controls.pipe';
 import { NamesurnamePipe } from '../pipes/namesurname.pipe';
 import { AutocompleteOffDirective } from '../directives/autocomplete-off.directive';
+import { ConfirmdialogComponent } from '../components/confirmdialog/confirmdialog.component';
 
 @NgModule({
   declarations: [
     TitlesDirective,
     AutocompleteOffDirective,
     NamesurnamePipe,
-    ErrorsFormsControlsPipe
+    ErrorsFormsControlsPipe,
+    ConfirmdialogComponent
   ],
   imports: [
     CommonModule,
