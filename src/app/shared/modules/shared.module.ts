@@ -12,13 +12,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorsFormsControlsPipe } from '../pipes/errors-forms-controls.pipe';
 import { NamesurnamePipe } from '../pipes/namesurname.pipe';
-import { AutocompleteOffDirective } from '../directives/autocomplete-off.directive';
 import { ConfirmdialogComponent } from '../components/confirmdialog/confirmdialog.component';
 
 @NgModule({
   declarations: [
     TitlesDirective,
-    AutocompleteOffDirective,
     NamesurnamePipe,
     ErrorsFormsControlsPipe,
     ConfirmdialogComponent
@@ -45,7 +43,6 @@ import { ConfirmdialogComponent } from '../components/confirmdialog/confirmdialo
     MatNativeDateModule,
     ReactiveFormsModule,
     TitlesDirective,
-    AutocompleteOffDirective,
     NamesurnamePipe,
     ErrorsFormsControlsPipe
   ]  

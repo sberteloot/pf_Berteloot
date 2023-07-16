@@ -4,12 +4,12 @@
 
     <div mat-dialog-content>
 
-        <form [formGroup]="studentFormGroupModel" class="row" autocomplete="none">
+        <form [formGroup]="studentFormGroupModel" class="row">
             
             <!-- CAMPO NOMBRE -->
             <mat-form-field class="mb-3" appearance="outline">
                 <mat-label>Nombre</mat-label>
-                <input appAutocompleteOff formControlName="name" matInput type="text" id="name" />
+                <input autocomplete="new-password" formControlName="name" matInput type="text" id="name" />
                 <mat-icon [color]="'accent'"  matPrefix>face</mat-icon>
                 <mat-error class="student__dialog_error" *ngFor="let error of nameFormControl.errors | keyvalue">
                     {{ error | errorsFormsControls }}
@@ -19,7 +19,7 @@
             <!-- CAMPO APELLIDO -->
             <mat-form-field  class="mb-3" appearance="outline">
                 <mat-label>Apellido</mat-label>
-                <input appAutocompleteOff formControlName="surname" matInput type="text" id="surname" />
+                <input autocomplete="new-password" formControlName="surname" matInput type="text" id="surname" />
                 <mat-icon [color]="'accent'"  matPrefix>badge</mat-icon>
                 <mat-error class="student__dialog_error" *ngFor="let error of surnameFormControl.errors | keyvalue">
                     {{ error | errorsFormsControls }}
@@ -29,7 +29,7 @@
             <!-- CAMPO EMAIL -->
             <mat-form-field  class="mb-3" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input appAutocompleteOff formControlName="email" matInput type="email" id="email" />
+                <input formControlName="email" matInput type="text" id="email" />
                 <mat-icon [color]="'accent'" matPrefix>alternate_email</mat-icon>
                 <mat-error class="student__dialog_error" *ngFor="let error of emailFormControl.errors | keyvalue">
                     {{ error | errorsFormsControls }}
@@ -39,7 +39,7 @@
             <!-- CAMPO FECHA NACIMIENTO -->
             <mat-form-field  class="mb-3" appearance="outline">
                 <mat-label>Fecha Nacimiento</mat-label>
-                <input appAutocompleteOff matInput formControlName="birth"  
+                <input autocomplete="new-password" matInput formControlName="birth"  
                     [matDatepicker]="birthPicker"
                     [max]="maxDateBirthPicker"
                     (click)="birthPicker.open()"
