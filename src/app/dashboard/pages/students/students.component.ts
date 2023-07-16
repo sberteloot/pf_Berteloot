@@ -21,7 +21,7 @@ export class StudentsComponent {
 
   openDialog(){
     this.studentDialog
-      .open(StudentsDialogComponent)
+      .open(StudentsDialogComponent, {panelClass: 'student__dialog__panel'})
       .afterClosed()
       .subscribe({
         next : (student) => {

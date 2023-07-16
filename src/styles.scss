@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0px;
+    border: 0px;
+    box-sizing: border-box;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.student__dialog__panel{
+    width: 50%;
+    min-width: 300px;    
+    overflow: auto;
+    pointer-events: auto;    
+}
+
+@media (max-width: 760px) {
+    .student__dialog__panel{
+        width: 75%;
+    }
+}
