@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { IStudent } from './models/student';
+import { ConfirmdialogComponent } from 'src/app/shared/components/confirmdialog/confirmdialog.component';
 
 @Component({
   selector: 'app-students',
@@ -17,7 +18,8 @@ export class StudentsComponent {
     {id: 4, name: 'maria', surname: 'sanchez', email: 'maria.sanchez@gmail.com', birth :new Date("1999-12-21")}
   ];
 
-  constructor(private studentDialog : MatDialog){}
+  constructor(private studentDialog : MatDialog, 
+              private confirmDialog: MatDialog){}
 
   openDialog(){
     this.studentDialog
@@ -39,6 +41,34 @@ export class StudentsComponent {
           }
         }
       });
+  }
+
+  showConfirmDialog(student : IStudent): void {
+    this.confirmDialog
+      .open(ConfirmdialogComponent, {
+        data: `¿Está seguro que desea quitar de la lista a ${ student.name + " " + student.surname }?`
+      })
+      .afterClosed()
+      .subscribe((confirm: Boolean) => {
+        if(confirm){
+          this.deleteStudent(student);
+        }
+      });
+  }
+
+  onEditStudent(student : IStudent){
+    console.log(student);
+    
+  }
+
+  onDeleteStudent(student : IStudent){
+    this.showConfirmDialog(student);
+  }
+
+  deleteStudent(student : IStudent){
+    this.arrayStudents = this.arrayStudents.filter((obj) =>{
+      return obj.id !== student.id;
+    })
   }
   
 }

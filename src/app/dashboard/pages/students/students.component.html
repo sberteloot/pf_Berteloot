@@ -3,4 +3,7 @@
         <mat-icon>person_add_alt_1</mat-icon>
     </button>
 </div>
-<app-students-list [arrayStudents]="arrayStudents"></app-students-list>
+<app-students-list 
+    [arrayStudents]="arrayStudents"
+    (onDeleteStudent)="onDeleteStudent($event)"
+/>
