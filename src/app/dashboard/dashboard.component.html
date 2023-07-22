@@ -1,20 +1,14 @@
 <!-- SIDEBAR -->
 <mat-drawer-container class="drawer__container" autosize>
-    <mat-drawer #drawer class="drawer__sidenav" mode="side">
-        <p>Bienvenido!!</p>
-    </mat-drawer>
 
-  <!-- TOOLBAR -->
-  <mat-toolbar>
-    <button mat-icon-button (click)="drawer.toggle()" >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span appTitles>ABM de Alumnos</span>
-  </mat-toolbar>
+  <mat-drawer #drawer class="drawer__sidenav" mode="side">
+    <app-nav></app-nav>
+  </mat-drawer>  
 
-  <!-- ABM ALUMNOS -->
+  <app-toolbar [drawer]="drawer"></app-toolbar>
+
   <main class="drawer__main">
-    <app-students></app-students>
+    <router-outlet></router-outlet>
   </main>
 
 </mat-drawer-container>
