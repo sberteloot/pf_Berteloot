@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { IStudent } from './models/student';
+import { Observable } from 'rxjs';
 import { ConfirmdialogComponent } from 'src/app/shared/components/confirmdialog/confirmdialog.component';
+import { StudentsService } from '../students.service';
 
 @Component({
   selector: 'app-students',
@@ -11,10 +13,14 @@ import { ConfirmdialogComponent } from 'src/app/shared/components/confirmdialog/
 })
 export class StudentsComponent {
   
-  arrayStudents: IStudent[] = [];
+  arrayStudents: Observable<IStudent[]>;
 
   constructor(private studentDialog : MatDialog, 
-              private confirmDialog: MatDialog){}
+              private confirmDialog: MatDialog,
+              private studentsService: StudentsService){
+    this.studentsService.loadStudents();
+    this.arrayStudents = this.studentsService.getStudents();
+  } 
 
   openDialog(){
     this.studentDialog
@@ -23,19 +29,36 @@ export class StudentsComponent {
       .subscribe({
         next : (student) => {
           if(student){
-            this.arrayStudents = [
-              ...this.arrayStudents,
-              {
-                id: this.arrayStudents.length + 1,
-                name: student.name,
-                email: student.email,
-                surname: student.surname,
-                birth: student.birth
-              },
-            ];
+            this.studentsService.insertStudent({
+              name: student.name,
+              email: student.email,
+              surname: student.surname,
+              birth: student.birth
+            })
           }
         }
       });
+  }
+
+  onEditStudent(studentToEdit : IStudent){
+    this.studentDialog
+      .open(StudentsDialogComponent, 
+        {
+          panelClass: 'student__dialog__panel',
+          data: studentToEdit
+        })
+      .afterClosed()
+      .subscribe({
+          next: (student) => {
+            if (student) {
+              this.studentsService.updateStudent(studentToEdit.id, student)
+            }
+          }
+      });    
+  }
+
+  onDeleteStudent(student : IStudent){
+    this.showConfirmDialog(student);
   }
 
   showConfirmDialog(student : IStudent): void {
@@ -51,37 +74,7 @@ export class StudentsComponent {
       });
   }
 
-  onEditStudent(studentToEdit : IStudent){
-    this.studentDialog
-      .open(StudentsDialogComponent, 
-        {
-          panelClass: 'student__dialog__panel',
-          data: studentToEdit
-        })
-      .afterClosed()
-      .subscribe({
-          next: (student) => {
-
-            if (student) {
-              this.arrayStudents = this.arrayStudents.map((obj) => {
-                return obj.id === studentToEdit.id
-                  ? { ...obj, ...student } 
-                  : obj; 
-              });
-            }
-          }
-
-      });    
-  }
-
-  onDeleteStudent(student : IStudent){
-    this.showConfirmDialog(student);
-  }
-
   deleteStudent(student : IStudent){
-    this.arrayStudents = this.arrayStudents.filter((obj) =>{
-      return obj.id !== student.id;
-    })
+    this.studentsService.deleteStudent(student.id);
   }
-  
 }
