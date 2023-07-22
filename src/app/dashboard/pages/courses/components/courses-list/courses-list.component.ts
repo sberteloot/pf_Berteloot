@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ICourse } from '../../models/course';
 
 @Component({
@@ -10,6 +10,12 @@ export class CoursesListComponent {
 
   @Input()
   arrayCourses : ICourse[] = [];
+
+  @Output()
+  onDeleteCourse = new EventEmitter<ICourse>();
+
+  @Output()
+  onEditCourse = new EventEmitter<ICourse>();
 
   displayedColumns: string[] = ['id', 'name', 'price', 'start', 'description', 'actions']; 
 }

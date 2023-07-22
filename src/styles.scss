@@ -20,3 +20,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         width: 75%;
     }
 }
+
+.course__dialog__panel{
+    width: 50%;
+    min-width: 300px;    
+    overflow: auto;
+    pointer-events: auto;    
+}
+
+@media (max-width: 760px) {
+    .course__dialog__panel{
+        width: 75%;
+    }
+}

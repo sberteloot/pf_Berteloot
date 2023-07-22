@@ -23,4 +23,35 @@ export class CoursesService {
     return this.courses$;
   }
 
+  insertCourse(course : ICourse) : void {
+    this.courses$.pipe(take(1)).subscribe({
+      next : (arrayCourses) => this._courses$.next(
+        [
+          ...arrayCourses,
+          {...course, id : arrayCourses.length + 1}
+        ]
+      )
+    })
+  }
+
+  updateCourse(id : number, course : ICourse) : void {
+    this.courses$.pipe(take(1)).subscribe({
+      next : (arrayCourses) => {
+        this._courses$.next(
+          arrayCourses.map((courseArray) =>
+          courseArray.id === id ? { ...courseArray, ...course } : courseArray          
+        )
+      )}
+    })
+  }
+  
+  deleteCourse(id : number) : void {
+    this.courses$.pipe(take(1)).subscribe({
+      next : (arrayCourses) => {
+        this._courses$.next(
+          arrayCourses.filter((courseArray) => courseArray.id !== id)
+        )
+      }
+    })
+  }
 }

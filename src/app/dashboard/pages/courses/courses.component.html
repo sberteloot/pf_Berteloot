@@ -1,15 +1,11 @@
 <div class="table-responsive__button">
-    <button mat-mini-fab color="primary">
+    <button mat-mini-fab color="primary" (click)="openDialog()">
         <mat-icon>event_note</mat-icon>
     </button>
 </div>
 <app-courses-list
     [arrayCourses]="(arrayCourses | async) || []"
+    (onDeleteCourse)="onDeleteCourse($event)"
+    (onEditCourse)="onEditCourse($event)"    
 >
 </app-courses-list>
-<!--
-
-    (onDeleteStudent)="onDeleteStudent($event)"
-    (onEditStudent)="onEditStudent($event)"
-(click)="openDialog()"
--->

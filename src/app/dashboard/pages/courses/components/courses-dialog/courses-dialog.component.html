@@ -1,1 +1,77 @@
-<p>courses-dialog works!</p>
+<main class="course__dialog">
+
+    <h1 mat-dialog-title appTitles><span class="dialogTitle">{{dialogTitle}}</span></h1>
+
+    <div mat-dialog-content>
+
+        <form [formGroup]="courseFormGroupModel" class="row">
+            
+            <!-- CAMPO NOMBRE -->
+            <mat-form-field class="mb-3" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input autocomplete="new-password" formControlName="name" matInput type="text" id="name" />
+                <mat-icon [color]="'accent'"  matPrefix>badge</mat-icon>
+                <mat-error class="course__dialog_error" *ngFor="let error of nameFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>
+
+            <!-- CAMPO PRECIO -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Precio</mat-label>
+                <input autocomplete="new-password" formControlName="price" matInput type="number" id="price" />
+                <mat-icon [color]="'accent'"  matPrefix>price_change</mat-icon>
+                <mat-error class="course__dialog_error" *ngFor="let error of priceFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>                
+            </mat-form-field>
+
+            <!-- CAMPO DESCRIPCION -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <input formControlName="description" matInput type="text" id="description" />
+                <mat-icon [color]="'accent'" matPrefix>description</mat-icon>
+                <mat-error class="course__dialog_error" *ngFor="let error of descriptionFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>
+
+            <!-- CAMPO FECHA INICIO -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Fecha Inicio</mat-label>
+                <input autocomplete="new-password" matInput formControlName="start"  
+                    [matDatepicker]="startPicker"
+                    [min]="minDatestartPicker"
+                    (click)="startPicker.open()"
+                    id="start"
+                />
+                <mat-datepicker-toggle matIconPrefix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker startView="multi-year"></mat-datepicker>
+                <mat-error class="course__dialog_error" *ngFor="let error of startFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>         
+            </mat-form-field>
+
+        </form>
+
+    </div>
+
+    <div class="course__dialog__actions">
+
+        <button mat-button (click)="clearForm()" tabindex="-1">
+            <mat-icon>clear</mat-icon>Borrar Datos
+        </button>
+
+        <div>
+            <button mat-button (click)="closeDialog()" tabindex="-1">
+                <mat-icon>cancel</mat-icon> Cancelar
+            </button>
+            
+            <button mat-button class="course__dialog__button__active" (click)="enviarDialog()">
+                <mat-icon>save</mat-icon> Guardar
+            </button>
+        </div>
+
+    </div>
+
+</main>
