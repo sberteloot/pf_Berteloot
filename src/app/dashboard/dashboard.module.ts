@@ -12,6 +12,7 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
+import { CoursesModule } from './pages/courses/courses.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatListModule,
     StudentsModule,
+    CoursesModule,
     SharedModule
   ],
   exports: [
