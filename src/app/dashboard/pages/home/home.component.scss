@@ -1,0 +1,31 @@
+.home{
+    display: flex;
+}
+
+.home__card {
+    max-width: 400px;
+    min-width: 260px;
+    min-height: 150px;
+    margin: 10px;
+}
+
+.home__card__value{
+    text-align: center;
+    font-size: 5rem;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.home__card__value__students{
+    color: aquamarine;
+}
+
+.home__card__value__courses{
+    color: darksalmon;
+}
+
+@media (max-width: 560px) {
+    .home{
+        flex-direction: column;
+    }
+}
