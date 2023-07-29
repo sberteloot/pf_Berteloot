@@ -1,0 +1,22 @@
+.user__dialog{
+    margin: 15px;
+}
+
+.user__dialog__actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user__dialog_error{
+    display: inline;
+}
+
+.user__dialog__button__active{
+    border: 2px solid rgba($color: #000000, $alpha: 0.2);
+    margin-left: 3px;
+}
+
+.dialogTitle{
+    color: wheat;
+}

@@ -1,9 +1,11 @@
 <div class="table-responsive__button">
-    <button mat-mini-fab color="primary" > <!--(click)="openDialog()"-->
+    <button mat-mini-fab color="primary" (click)="openDialog()"> 
         <mat-icon>person_add_alt_1</mat-icon>
     </button>
 </div>
 <app-users-list
     [arrayUsers]="(arrayUsers | async) || []"
     (onDetailUser)="onDetailUser($event)"
+    (onDeleteUser)="onDeleteUser($event)"
+    (onEditUser)="onEditUser($event)"
 />

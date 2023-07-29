@@ -1,1 +1,71 @@
-<p>user-dialog works!</p>
+<main class="user__dialog">
+
+    <h1 mat-dialog-title appTitles><span class="dialogTitle">{{dialogTitle}}</span></h1>
+
+    <div mat-dialog-content>
+
+        <form [formGroup]="userFormGroupModel" class="row">
+            
+            <!-- CAMPO NOMBRE -->
+            <mat-form-field class="mb-3" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input autocomplete="new-password" formControlName="name" matInput type="text" id="name" />
+                <mat-icon [color]="'accent'"  matPrefix>face</mat-icon>
+                <mat-error class="user__dialog_error" *ngFor="let error of nameFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>
+
+            <!-- CAMPO APELLIDO -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Apellido</mat-label>
+                <input autocomplete="new-password" formControlName="surname" matInput type="text" id="surname" />
+                <mat-icon [color]="'accent'"  matPrefix>badge</mat-icon>
+                <mat-error class="user__dialog_error" *ngFor="let error of surnameFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>                
+            </mat-form-field>
+
+            <!-- CAMPO EMAIL -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput type="text" id="email" />
+                <mat-icon [color]="'accent'" matPrefix>alternate_email</mat-icon>
+                <mat-error class="user__dialog_error" *ngFor="let error of emailFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>
+
+            <!-- CAMPO PASSWORD -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput type="password" id="password" />
+                <mat-icon [color]="'accent'" matPrefix>password</mat-icon>
+                <mat-error class="user__dialog_error" *ngFor="let error of passwordFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>
+            
+        </form>
+
+    </div>
+
+    <div class="user__dialog__actions">
+
+        <button mat-button (click)="clearForm()" tabindex="-1">
+            <mat-icon>clear</mat-icon>Borrar Datos
+        </button>
+
+        <div>
+            <button mat-button (click)="closeDialog()" tabindex="-1">
+                <mat-icon>cancel</mat-icon> Cancelar
+            </button>
+            
+            <button mat-button class="user__dialog__button__active" (click)="enviarDialog()">
+                <mat-icon>save</mat-icon> Guardar
+            </button>
+        </div>
+
+    </div>
+
+</main>

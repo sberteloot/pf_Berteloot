@@ -29,7 +29,7 @@ export class UserDetailComponent {
 
   getUser(id : number) : void {
     this.usersService.loadUsers();
-    this.usersService.getUserById(1).subscribe({
+    this.usersService.getUserById(id).subscribe({
       next : (user) => this.user = user
     })    
   }
