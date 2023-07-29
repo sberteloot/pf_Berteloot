@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 import { CoursesModule } from './pages/courses/courses.module';
+import { UsersModule } from './pages/users/users.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CoursesModule } from './pages/courses/courses.module';
     MatCardModule,
     StudentsModule,
     CoursesModule,
+    UsersModule,
     SharedModule
   ],
   exports: [

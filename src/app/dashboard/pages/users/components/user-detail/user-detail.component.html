@@ -1,1 +1,29 @@
-<p>user-detail works!</p>
+<div class="table-responsive__button">
+    <button routerLink=".." mat-mini-fab color="primary">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
+
+<div class="container container__detail">
+
+    <div class="row row__detail">
+        <div class="col col__title">Id:</div>
+        <div class="col">{{ user?.id }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Nombre:</div>
+        <div class="col">{{ user?.name }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Apellido:</div>
+        <div class="col">{{ user?.surname }}</div>
+    </div>     
+    
+    <div class="row row__detail">
+        <div class="col col__title">Eamil:</div>
+        <div class="col">{{ user?.email }}</div>
+    </div> 
+    
+</div>

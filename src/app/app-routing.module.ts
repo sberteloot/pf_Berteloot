@@ -9,6 +9,8 @@ import { RegisterComponent } from './auth/pages/register/register.component';
 import { CoursesComponent } from './dashboard/pages/courses/courses.component';
 import { CourseDetailComponent } from './dashboard/pages/courses/components/course-detail/course-detail.component';
 import { StudentDetailComponent } from './dashboard/pages/students/components/student-detail/student-detail.component';
+import { UsersComponent } from './dashboard/pages/users/users.component';
+import { UserDetailComponent } from './dashboard/pages/users/components/user-detail/user-detail.component';
 
 const routes: Routes = [
   {
@@ -56,7 +58,25 @@ const routes: Routes = [
             data: {title:'Detalle del Curso'}
           }
         ]
-      }      
+      },
+      {
+        // /dashboard/users
+        path: 'users',
+        children: [
+          {
+            // /dashboard/users
+            path: '',
+            component: UsersComponent,
+            data: {title:'ABM de Usuarios'}
+          },
+          {
+            // /dashboard/users/:id
+            path: ':id',
+            component: UserDetailComponent,
+            data: {title:'Detalle del Usuario'}
+          }
+        ]
+      }            
     ]
   },
   {

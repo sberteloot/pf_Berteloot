@@ -1,1 +1,48 @@
-<p>users-list works!</p>
+<section class="table-responsive">
+    <table mat-table [dataSource]="arrayUsers" class="mat-elevation-z8">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+        </ng-container>
+
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="namesurname">
+        <th mat-header-cell *matHeaderCellDef> Nombre y Apellido </th>
+        <td mat-cell *matCellDef="let user"> {{user | namesurname | titlecase }} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let user"> {{user.email | lowercase }} </td>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let user"> 
+
+                <!-- Button DETAIL-->
+                <button (click)="onDetailUser.emit(user)" mat-icon-button>
+                    <mat-icon>visibility</mat-icon>
+                </button>                   
+
+                <!-- Button EDIT-->
+                <button (click)="onEditUser.emit(user)" mat-icon-button>
+                    <mat-icon>edit</mat-icon>
+                </button>                
+                
+                <!-- Button DELETE-->
+                <button (click)="onDeleteUser.emit(user)" mat-icon-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+            </td>
+        </ng-container>        
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</section>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { StudentsService } from '../students/students.service';
 import { CoursesService } from '../courses/courses.service';
+import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,11 @@ export class HomeComponent {
 
   studentsCount:number = 0;
   coursesCount:number = 0;
+  usersCount:number = 0;
 
   constructor(private studentsService:StudentsService,
-              private coursesService:CoursesService){
+              private coursesService:CoursesService,
+              private usersService:UsersService){
     this.studentsService.loadStudents();
     this.studentsService.getStudents().subscribe({
       next : (arrayStudents) =>{
@@ -26,7 +29,15 @@ export class HomeComponent {
       next : (arrayCourses) =>{
         this.coursesCount = arrayCourses.length
       }
-    })    
+    });
+    
+    this.usersService.loadUsers();
+    this.usersService.getUsers().subscribe({
+      next : (arrayUsers) =>{
+        this.usersCount = arrayUsers.length
+      }
+    });
+
   }
 
 }
