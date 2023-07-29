@@ -17,5 +17,8 @@ export class CoursesListComponent {
   @Output()
   onEditCourse = new EventEmitter<ICourse>();
 
+  @Output()
+  onDetailCourse = new EventEmitter<ICourse>();
+
   displayedColumns: string[] = ['id', 'name', 'price', 'start', 'description', 'actions']; 
 }

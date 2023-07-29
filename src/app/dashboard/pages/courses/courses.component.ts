@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmdialogComponent } from 'src/app/shared/components/confirmdialog/confirmdialog.component';
 import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -17,7 +18,8 @@ export class CoursesComponent {
 
   constructor(private coursesService:CoursesService,
               private confirmDialog:MatDialog,
-              private couseDialog:MatDialog){
+              private couseDialog:MatDialog,
+              private router: Router){
     this.coursesService.loadCourses();
     this.arrayCourses = this.coursesService.getCourses();    
   }
@@ -64,6 +66,10 @@ export class CoursesComponent {
         this.coursesService.deleteCourse(course.id);
       }
     });
+  }
+
+  onDetailCourse(course : ICourse){
+    this.router.navigate(['dashboard/courses', course.id]);
   }
 
 }

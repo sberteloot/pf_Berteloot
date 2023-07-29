@@ -1,0 +1,34 @@
+<div class="table-responsive__button">
+    <button routerLink=".." mat-mini-fab color="primary">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
+
+<div class="container container__detail">
+
+    <div class="row row__detail">
+        <div class="col col__title">Id:</div>
+        <div class="col">{{ course?.id }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Nombre:</div>
+        <div class="col">{{ course?.name }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Descripción:</div>
+        <div class="col">{{ course?.description }}</div>
+    </div>     
+    
+    <div class="row row__detail">
+        <div class="col col__title">Precio:</div>
+        <div class="col">{{ course?.price | currency }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Inicio:</div>
+        <div class="col">{{ course?.start | date:'dd/MM/yyyy':'GMT+0' }}</div>
+    </div> 
+
+</div>

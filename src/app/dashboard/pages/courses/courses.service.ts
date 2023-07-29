@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { ICourse } from './models/course';
 import { CoursesmockService } from './mock/coursesmock.service';
 
@@ -9,7 +9,6 @@ import { CoursesmockService } from './mock/coursesmock.service';
 export class CoursesService {
 
   private _courses$ = new BehaviorSubject<ICourse[]>([]);
-  private courses$ = this._courses$.asObservable();
 
   constructor(private coursesServiceMock:CoursesmockService) { }
 
@@ -20,11 +19,11 @@ export class CoursesService {
   }
 
   getCourses() : Observable<ICourse[]>{
-    return this.courses$;
+    return this._courses$.asObservable();
   }
 
   insertCourse(course : ICourse) : void {
-    this.courses$.pipe(take(1)).subscribe({
+    this._courses$.pipe(take(1)).subscribe({
       next : (arrayCourses) => this._courses$.next(
         [
           ...arrayCourses,
@@ -35,7 +34,7 @@ export class CoursesService {
   }
 
   updateCourse(id : number, course : ICourse) : void {
-    this.courses$.pipe(take(1)).subscribe({
+    this._courses$.pipe(take(1)).subscribe({
       next : (arrayCourses) => {
         this._courses$.next(
           arrayCourses.map((courseArray) =>
@@ -46,12 +45,17 @@ export class CoursesService {
   }
   
   deleteCourse(id : number) : void {
-    this.courses$.pipe(take(1)).subscribe({
+    this._courses$.pipe(take(1)).subscribe({
       next : (arrayCourses) => {
         this._courses$.next(
           arrayCourses.filter((courseArray) => courseArray.id !== id)
         )
       }
     })
+  }
+
+  getCuurseById(id : number) : Observable<ICourse | undefined> {
+      return this._courses$.pipe(
+        map((arrayCourses) =>  arrayCourses.find((course) => course.id === id)))    
   }
 }
