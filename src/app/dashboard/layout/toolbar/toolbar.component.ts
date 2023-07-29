@@ -9,22 +9,19 @@ import { filter } from 'rxjs';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
   @Input()
   public drawer?: MatDrawer;
 
   title:string = "Home";
 
 constructor(private router: Router, 
-            private routeDataService: RoutedataService){}
-
-  ngOnInit(): void {
+            private routeDataService: RoutedataService){
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(_ => {
-        this.title = this.routeDataService.get()["title"]
-      }        
-      );
-  } 
-
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe(_ => {
+      this.title = this.routeDataService.get()["title"]
+    }        
+    );              
+  }
 }

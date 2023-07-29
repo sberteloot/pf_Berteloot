@@ -17,6 +17,9 @@ export class StudentsListComponent {
 
   @Output()
   onEditStudent = new EventEmitter<IStudent>();
+
+  @Output()
+  onDetailStudent = new EventEmitter<IStudent>();
   
   displayedColumns: string[] = ['id', 'namesurname', 'email', 'birth', 'actions']; 
 }

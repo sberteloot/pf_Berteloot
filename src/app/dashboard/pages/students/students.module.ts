@@ -7,15 +7,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { CustomDateAdapter } from 'src/app/shared/adapters/customdateadapter';
+import { StudentDetailComponent } from './components/student-detail/student-detail.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     StudentsComponent,
     StudentsListComponent,
-    StudentsDialogComponent
+    StudentsDialogComponent,
+    StudentDetailComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     SharedModule,
     MatIconModule
   ],

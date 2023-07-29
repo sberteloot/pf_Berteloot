@@ -1,0 +1,34 @@
+<div class="table-responsive__button">
+    <button routerLink=".." mat-mini-fab color="primary">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
+
+<div class="container container__detail">
+
+    <div class="row row__detail">
+        <div class="col col__title">Id:</div>
+        <div class="col">{{ student?.id }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Nombre:</div>
+        <div class="col">{{ student?.name }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Apellido:</div>
+        <div class="col">{{ student?.surname }}</div>
+    </div>     
+    
+    <div class="row row__detail">
+        <div class="col col__title">Eamil:</div>
+        <div class="col">{{ student?.email }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Fecha Nacimiento:</div>
+        <div class="col">{{ student?.birth | date:'dd/MM/yyyy':'GMT+0' }}</div>
+    </div> 
+
+</div>

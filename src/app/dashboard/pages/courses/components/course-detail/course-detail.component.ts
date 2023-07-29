@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CoursesService } from '../../courses.service';
 import { ICourse } from '../../models/course';
 import { take } from 'rxjs';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -17,10 +18,11 @@ export class CourseDetailComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private coursesService: CoursesService,
+    private notifier: NotifierService
   ) {
     if (!Number(this.activatedRoute.snapshot.params['id'])) {
       this.router.navigate(['dashboard', 'courses']);
-      //this.notification.showError(`${this.activatedRoute.snapshot.params['id']} no es un ID valido`);
+      this.notifier.showError(`${this.activatedRoute.snapshot.params['id']} no es un ID valido`);
     } else {
       this.getCourse(Number(this.activatedRoute.snapshot.params['id']));
     }

@@ -5,6 +5,7 @@ import { IStudent } from './models/student';
 import { Observable } from 'rxjs';
 import { ConfirmdialogComponent } from 'src/app/shared/components/confirmdialog/confirmdialog.component';
 import { StudentsService } from '../students.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -17,7 +18,8 @@ export class StudentsComponent {
 
   constructor(private studentDialog : MatDialog, 
               private confirmDialog: MatDialog,
-              private studentsService: StudentsService){
+              private studentsService: StudentsService,
+              private router: Router){
     this.studentsService.loadStudents();
     this.arrayStudents = this.studentsService.getStudents();
   } 
@@ -76,5 +78,9 @@ export class StudentsComponent {
 
   deleteStudent(student : IStudent){
     this.studentsService.deleteStudent(student.id);
+  }
+
+  onDetailStudent(student : IStudent){
+    this.router.navigate(['dashboard/students', student.id]);
   }
 }

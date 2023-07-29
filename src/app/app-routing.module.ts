@@ -8,6 +8,7 @@ import { LoginComponent } from './auth/pages/login/login.component';
 import { RegisterComponent } from './auth/pages/register/register.component';
 import { CoursesComponent } from './dashboard/pages/courses/courses.component';
 import { CourseDetailComponent } from './dashboard/pages/courses/components/course-detail/course-detail.component';
+import { StudentDetailComponent } from './dashboard/pages/students/components/student-detail/student-detail.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,20 @@ const routes: Routes = [
       {
         // /dashboard/students
         path: 'students',
-        component: StudentsComponent,
-        data: {title:'ABM de Estudiantes'}
+        children: [
+          {
+            // /dashboard/students
+            path: '',
+            component: StudentsComponent,
+            data: {title:'ABM de Estudiantes'}
+          },
+          {
+            // /dashboard/students/:id
+            path: ':id',
+            component: StudentDetailComponent,
+            data: {title:'Detalle del Estudiante'}
+          }
+        ]        
       },
       {
         // /dashboard/courses

@@ -30,6 +30,11 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let student"> 
 
+                <!-- Button DETAIL-->
+                <button (click)="onDetailStudent.emit(student)" mat-icon-button>
+                    <mat-icon>visibility</mat-icon>
+                </button>                   
+
                 <!-- Button EDIT-->
                 <button (click)="onEditStudent.emit(student)" mat-icon-button>
                     <mat-icon>edit</mat-icon>
