@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, take, map } from 'rxjs';
-import { IStudent, IStudentCU } from './students/models/student';
-import { StudentsmockService } from './students/mock/studentsmock.service';
+import { IStudent, IStudentCU } from '../students/models/student';
+import { StudentsmockService } from '../students/mock/studentsmock.service';
 
 @Injectable({
   providedIn: 'root'

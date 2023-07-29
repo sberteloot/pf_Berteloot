@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IStudent } from '../../models/student';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentsService } from '../../../students.service';
+import { StudentsService } from '../../students.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Component({

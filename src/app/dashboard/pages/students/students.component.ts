@@ -4,7 +4,7 @@ import { StudentsDialogComponent } from './components/students-dialog/students-d
 import { IStudent } from './models/student';
 import { Observable } from 'rxjs';
 import { ConfirmdialogComponent } from 'src/app/shared/components/confirmdialog/confirmdialog.component';
-import { StudentsService } from '../students.service';
+import { StudentsService } from '../students/students.service';
 import { Router } from '@angular/router';
 
 @Component({
