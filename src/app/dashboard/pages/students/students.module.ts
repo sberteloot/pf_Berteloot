@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { CustomDateAdapter } from 'src/app/shared/adapters/customdateadapter';
 import { StudentDetailComponent } from './components/student-detail/student-detail.component';
 import { RouterModule } from '@angular/router';
+import { StudentsRoutingModule } from './students-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    StudentsRoutingModule,    
     RouterModule,
     SharedModule,
     MatIconModule

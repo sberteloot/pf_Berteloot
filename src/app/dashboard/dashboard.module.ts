@@ -15,6 +15,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 import { CoursesModule } from './pages/courses/courses.module';
 import { UsersModule } from './pages/users/users.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UsersModule } from './pages/users/users.module';
   ],
   imports: [
     CommonModule,
+    DashboardRoutingModule,
     RouterModule,
     MatButtonModule,
     MatSidenavModule,

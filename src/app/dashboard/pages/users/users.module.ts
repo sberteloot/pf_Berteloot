@@ -7,8 +7,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-
-
+import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +18,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    UsersRoutingModule,
     SharedModule,
     RouterModule,
     MatIconModule

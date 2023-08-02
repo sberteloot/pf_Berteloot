@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 import { RouterModule } from '@angular/router';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    CoursesRoutingModule,
     RouterModule,
     SharedModule,
     MatIconModule

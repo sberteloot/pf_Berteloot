@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CoursesService } from '../../courses.service';
 import { ICourse } from '../../models/course';
-import { take } from 'rxjs';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Component({
