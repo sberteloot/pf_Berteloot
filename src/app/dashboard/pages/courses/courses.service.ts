@@ -1,21 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { ICourse } from './models/course';
-import { CoursesmockService } from './mock/coursesmock.service';
+import { HttpClient } from '@angular/common/http';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
+  private url = "http://localhost:3000/courses";
   private _courses$ = new BehaviorSubject<ICourse[]>([]);
 
-  constructor(private coursesServiceMock:CoursesmockService) { }
+  constructor(private httpClient : HttpClient,
+    private notifier : NotifierService) { }
 
   loadCourses() : void{
-    this.coursesServiceMock.getCoursesMock().subscribe({
-      next : (arrayCoursesMock) => this._courses$.next(arrayCoursesMock)
-    });
+    this.httpClient.get<ICourse[]>(this.url).subscribe({
+      next: (response) => {
+        this._courses$.next(response);
+      },
+      error: () => {
+        this.notifier.showError('Hubo un error en la carga de cursos');
+      }
+    })
   }
 
   getCourses() : Observable<ICourse[]>{
@@ -23,33 +31,28 @@ export class CoursesService {
   }
 
   insertCourse(course : ICourse) : void {
-    this._courses$.pipe(take(1)).subscribe({
-      next : (arrayCourses) => this._courses$.next(
-        [
-          ...arrayCourses,
-          {...course, id : arrayCourses.length + 1}
-        ]
-      )
+    this.httpClient.post(this.url, course).subscribe({
+      next : () => this.loadCourses(),
+      error: () => {
+        this.notifier.showError('Hubo un error agregar el curso');
+      }
     })
   }
 
   updateCourse(id : number, course : ICourse) : void {
-    this._courses$.pipe(take(1)).subscribe({
-      next : (arrayCourses) => {
-        this._courses$.next(
-          arrayCourses.map((courseArray) =>
-          courseArray.id === id ? { ...courseArray, ...course } : courseArray          
-        )
-      )}
+    this.httpClient.put(this.url + "/" + id, course).subscribe({
+      next : () => this.loadCourses(),
+      error: () => {
+        this.notifier.showError('Hubo un error actualizar el curso');
+      }
     })
   }
   
   deleteCourse(id : number) : void {
-    this._courses$.pipe(take(1)).subscribe({
-      next : (arrayCourses) => {
-        this._courses$.next(
-          arrayCourses.filter((courseArray) => courseArray.id !== id)
-        )
+    this.httpClient.delete(this.url + "/" + id).subscribe({
+      next : () => this.loadCourses(),
+      error: () => {
+        this.notifier.showError('Hubo un error eliminar el curso');
       }
     })
   }

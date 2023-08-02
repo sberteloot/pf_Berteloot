@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, take, map } from 'rxjs';
 import { IStudent, IStudentCU } from '../students/models/student';
-import { StudentsmockService } from '../students/mock/studentsmock.service';
+import { HttpClient } from '@angular/common/http';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentsService {
 
+  private url = "http://localhost:3000/students";
   private _students$ = new BehaviorSubject<IStudent[]>([]);
 
-  constructor(private studentsMockService : StudentsmockService) { }
+  constructor(private httpClient : HttpClient,
+    private notifier : NotifierService) { }
 
   loadStudents() : void{
-    this.studentsMockService.getStudentsMock().subscribe({
-      next : (arrayStudentsMock) => this._students$.next(arrayStudentsMock)
+    this.httpClient.get<IStudent[]>(this.url).subscribe({
+      next: (response) => {
+        this._students$.next(response);
+      },
+      error: () => {
+        this.notifier.showError('Hubo un error en la carga de estudiantes');
+      }
     })
   }
 
@@ -23,36 +31,30 @@ export class StudentsService {
   }
 
   insertStudent(student : IStudentCU) : void{
-    this._students$.pipe(take(1)).subscribe({
-      next : (arrayStudents) => {
-        this._students$.next([
-          ...arrayStudents,
-          {...student, id : arrayStudents.length + 1}
-        ])
+    this.httpClient.post(this.url, student).subscribe({
+      next : () => this.loadStudents(),
+      error: () => {
+        this.notifier.showError('Hubo un error agregar el estudiante');
       }
     })
   }
 
   updateStudent(id : number, student : IStudentCU) : void {
-    this._students$.pipe(take(1)).subscribe({
-      next: (arrayStudents) => {
-        this._students$.next(
-          arrayStudents.map((studentArray) =>
-          studentArray.id === id ? { ...studentArray, ...student } : studentArray
-          )
-        );
-      },
-    });
+    this.httpClient.put(this.url + "/" + id, student).subscribe({
+      next : () => this.loadStudents(),
+      error: () => {
+        this.notifier.showError('Hubo un error actualizar el estudiante');
+      }
+    })
   }
 
   deleteStudent(id : number) : void {
-    this._students$.pipe(take(1)).subscribe({
-      next: (arrayStudents) => {
-        this._students$.next(
-          arrayStudents.filter((studentArray) => studentArray.id !== id)
-        );
-      },      
-    });
+    this.httpClient.delete(this.url + "/" + id).subscribe({
+      next : () => this.loadStudents(),
+      error: () => {
+        this.notifier.showError('Hubo un error eliminar el estudiante');
+      }
+    })
   }
 
   getStudentById(id : number) : Observable<IStudent | undefined> {
