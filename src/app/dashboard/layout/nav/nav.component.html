@@ -1,17 +1,28 @@
-<mat-nav-list>
+<main class="nav__main">
+    <mat-nav-list>
 
-    <a routerLink="home" mat-list-item>Inicio
-        <mat-icon matListItemIcon>home</mat-icon>
-    </a>
+        <a routerLink="home" mat-list-item>Inicio
+            <mat-icon matListItemIcon>home</mat-icon>
+        </a>
 
-    <a routerLink="students" mat-list-item>Estudiantes
-        <mat-icon matListItemIcon>face</mat-icon>
-    </a>
-    <a routerLink="courses" mat-list-item>Cursos
-        <mat-icon matListItemIcon>event_note</mat-icon>
-    </a>
-    <a routerLink="users" mat-list-item>Usuarios
-        <mat-icon matListItemIcon>person</mat-icon>
-    </a>
+        <a routerLink="students" mat-list-item>Estudiantes
+            <mat-icon matListItemIcon>face</mat-icon>
+        </a>
+        <a routerLink="courses" mat-list-item>Cursos
+            <mat-icon matListItemIcon>event_note</mat-icon>
+        </a>
+        <a routerLink="users" mat-list-item>Usuarios
+            <mat-icon matListItemIcon>person</mat-icon>
+        </a>
 
-</mat-nav-list>
+    </mat-nav-list>
+    
+    <mat-nav-list>
+        <span (click)="logout()">
+            <a mat-list-item>Cerrar Sesión
+                <mat-icon matListItemIcon>logout</mat-icon>
+            </a>  
+        </span>
+    </mat-nav-list>
+
+</main>
