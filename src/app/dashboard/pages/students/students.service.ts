@@ -21,8 +21,8 @@ export class StudentsService {
       next: (response) => {
         this._students$.next(response);
       },
-      error: () => {
-        this.notifier.showError('Hubo un error en la carga de estudiantes');
+      error: (err) => {
+        this.notifier.showAnyError(err);
       }
     })
   }

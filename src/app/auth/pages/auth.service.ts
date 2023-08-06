@@ -36,7 +36,9 @@ export class AuthService {
           this.notifier.showError('Email o contrasena invalida');
           this._authUser$.next(null);
         }
-      }
+      },
+      error : (error) => this.notifier.showAnyError(error)
+      
     })
   }
 }

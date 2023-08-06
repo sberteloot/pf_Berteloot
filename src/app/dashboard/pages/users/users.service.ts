@@ -22,8 +22,8 @@ export class UsersService {
       next: (response) => {
         this._users$.next(response);
       },
-      error: () => {
-        this.notifier.showError('Hubo un error en la carga de usuarios');
+      error: (err) => {
+        this.notifier.showAnyError(err);
       }
     })
   }

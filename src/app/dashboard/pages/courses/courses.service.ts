@@ -21,8 +21,8 @@ export class CoursesService {
       next: (response) => {
         this._courses$.next(response);
       },
-      error: () => {
-        this.notifier.showError('Hubo un error en la carga de cursos');
+      error: (err) => {
+        this.notifier.showAnyError(err);
       }
     })
   }
