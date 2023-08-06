@@ -33,7 +33,7 @@ export class AuthService {
           this.router.navigate(['/dashboard/home']);
           localStorage.setItem('token', authUser.token);
         } else {
-          this.notifier.showError('Email o contrasena invalida');
+          this.notifier.showError('Email o contraseña invalida');
           this._authUser$.next(null);
         }
       },
@@ -53,4 +53,9 @@ export class AuthService {
       })
     )
   }
+
+  getAuthObservable() : Observable<IUser | null> {
+    return this._authUser$.asObservable();
+  }
+
 }
