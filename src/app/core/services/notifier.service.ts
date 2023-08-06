@@ -70,8 +70,6 @@ export class NotifierService {
 
     let message = 'Ocurrió un Error Inesperado';
 
-    console.log(err);
-    
     if (err.name === 'HttpErrorResponse' && err.status === 0) {
       return 'No se pudo establecer la conexión con el Servidor';
     }

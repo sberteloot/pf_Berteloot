@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/dashboard/pages/users/models/user';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable, map } from "rxjs";
 import { Router } from '@angular/router';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 
@@ -31,7 +31,7 @@ export class AuthService {
           const authUser = response[0];
           this._authUser$.next(authUser);          
           this.router.navigate(['/dashboard/home']);
-          //localStorage.setItem('token', authUser.token);
+          localStorage.setItem('token', authUser.token);
         } else {
           this.notifier.showError('Email o contrasena invalida');
           this._authUser$.next(null);
@@ -40,5 +40,17 @@ export class AuthService {
       error : (error) => this.notifier.showAnyError(error)
       
     })
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return this.httpClient.get<IUser[]>(this.urlUsers, {
+      params: {
+        token: localStorage.getItem('token') || '',
+      }
+    }).pipe(
+      map((usersResult) => {
+        return !!usersResult.length
+      })
+    )
   }
 }
