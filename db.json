@@ -1,38 +1,67 @@
 {
   "users": [
     {
-      "name": "Sergio Jose",
-      "surname": "Berteloot",
-      "email": "sjberteloot@gmail.com",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "surname": "Administrador",
       "password": "1234567",
-      "token": "aBcDeFg123HiHAKa73Fr",
+      "token": "gYRCf3aXyiSxLxooYdT1",
       "id": 1
     },
     {
-      "name": "Maria Julieta",
-      "surname": "Gomez",
-      "email": "mgomez@gmail.com",
+      "name": "Sergio",
+      "email": "sjberteloot@gmail.com",
+      "surname": "Berteloot",
       "password": "1234567",
-      "token": "qnLlxxXWsCfLxhVDTOoz",
+      "token": "sQ4A4Usj0QkrXw5ff1sm",
       "id": 2
+    },
+    {
+      "name": "Raul Reaynaldo",
+      "surname": "Rey",
+      "email": "rrey@gmail.com",
+      "password": "1234567",
+      "token": "pbULmlJisy8gwOquLz2s",
+      "id": 3
     }
   ],
   "students": [
     {
-      "name": "Juan ",
-      "email": "juan@gmail.com",
-      "surname": "Sparisci",
-      "birth": "2000-07-31T03:00:00.000Z",
+      "name": "Miguel",
+      "email": "migue@gmail.com",
+      "surname": "Serio",
+      "birth": "1999-09-15T03:00:00.000Z",
       "id": 1
+    },
+    {
+      "name": "Gisela",
+      "email": "ggomez@gmail.com",
+      "surname": "Gomez",
+      "birth": "2001-03-21T03:00:00.000Z",
+      "id": 2
+    },
+    {
+      "name": "Alicia",
+      "email": "asanchez@gmail.com",
+      "surname": "Sanchez",
+      "birth": "2001-12-22T03:00:00.000Z",
+      "id": 3
     }
   ],
   "courses": [
     {
       "name": "Angular",
       "price": 14000,
-      "description": "Curso de Angular.",
+      "description": "Curso de Angular",
       "start": "2023-09-01T03:00:00.000Z",
       "id": 1
+    },
+    {
+      "name": "React",
+      "price": 12000,
+      "description": "Curso de React",
+      "start": "2023-09-15T03:00:00.000Z",
+      "id": 2
     }
   ]
 }
