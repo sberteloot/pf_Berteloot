@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
-import { RoutedataService } from 'src/app/shared/services/routedata.service';
+import { RoutedataService } from 'src/app/core/services/routedata.service';
 import { filter } from 'rxjs';
 
 @Component({

@@ -5,7 +5,6 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { SharedModule } from 'src/app/shared/modules/shared.module';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { UsersRoutingModule } from './users-routing.module';
 
@@ -20,8 +19,7 @@ import { UsersRoutingModule } from './users-routing.module';
     CommonModule,
     UsersRoutingModule,
     SharedModule,
-    RouterModule,
-    MatIconModule
+    RouterModule
   ],
   exports: [
     UsersComponent

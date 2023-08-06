@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorsFormsControlsPipe } from '../pipes/errors-forms-controls.pipe';
 import { NamesurnamePipe } from '../pipes/namesurname.pipe';
 import { ConfirmdialogComponent } from '../components/confirmdialog/confirmdialog.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,8 @@ import { ConfirmdialogComponent } from '../components/confirmdialog/confirmdialo
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
+    MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,

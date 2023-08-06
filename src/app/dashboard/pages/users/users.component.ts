@@ -78,7 +78,7 @@ export class UsersComponent {
       .subscribe({
           next: (user) => {
             if (user) {
-              this.usersService.updateUser(userToEdit.id, user)
+              this.usersService.updateUser(userToEdit.id, userToEdit.token, user)
             }
           }
       });    

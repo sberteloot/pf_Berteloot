@@ -16,7 +16,7 @@ const routes: Routes = [
   },  
   {
     path: '**',
-    redirectTo: 'dashboard/home'
+    redirectTo: 'auth/login'
   }
 ];
 

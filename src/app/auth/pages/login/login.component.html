@@ -1,1 +1,36 @@
-<p>login works!</p>
+<main class="login__main">
+    <div>
+        <h1>Iniciar Sesión</h1>
+
+        <form [formGroup]="loginFormGroup" class="row">
+            
+            <!-- CAMPO EMAIL -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput type="text" id="email" />
+                <mat-icon [color]="'accent'" matPrefix>alternate_email</mat-icon>
+                <mat-error class="login__main_error" *ngFor="let error of emailFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>        
+    
+            <!-- CAMPO PASSWORD -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput type="password" id="password" />
+                <mat-icon [color]="'accent'" matPrefix>password</mat-icon>
+                <mat-error class="login__main_error" *ngFor="let error of passwordFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>
+    
+        </form>
+    </div>
+    <div class="login__main__actions">
+
+        <button mat-button (click)="login()">
+            <mat-icon>login</mat-icon>Ingresar
+        </button>
+
+    </div>    
+</main>

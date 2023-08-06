@@ -3,13 +3,14 @@ import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { ICourse } from './models/course';
 import { HttpClient } from '@angular/common/http';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
-  private url = "http://localhost:3000/courses";
+  private url = environment.baseApiUrl + "courses";
   private _courses$ = new BehaviorSubject<ICourse[]>([]);
 
   constructor(private httpClient : HttpClient,

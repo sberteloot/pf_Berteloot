@@ -1,11 +1,20 @@
 {
   "users": [
     {
-      "name": "Sergio",
+      "name": "Sergio Jose",
       "surname": "Berteloot",
       "email": "sjberteloot@gmail.com",
       "password": "1234567",
+      "token": "aBcDeFg123HiHAKa73Fr",
       "id": 1
+    },
+    {
+      "name": "Maria Julieta",
+      "surname": "Gomez",
+      "email": "mgomez@gmail.com",
+      "password": "1234567",
+      "token": "qnLlxxXWsCfLxhVDTOoz",
+      "id": 2
     }
   ],
   "students": [

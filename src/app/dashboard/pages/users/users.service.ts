@@ -3,13 +3,15 @@ import { IUser, IUserCU } from './models/user';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, take, map } from 'rxjs';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { environment } from 'src/environments/environment';
+import { generateToken } from 'src/app/shared/helpers/helper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  private url = "http://localhost:3000/users";
+  private url = environment.baseApiUrl + "users";
   private _users$ = new BehaviorSubject<IUser[]>([]);
 
   constructor(private httpClient : HttpClient,
@@ -36,7 +38,8 @@ export class UsersService {
   }
 
   insertUser(user : IUserCU) : void{
-    this.httpClient.post(this.url, user).subscribe({
+    let token = generateToken();
+    this.httpClient.post(this.url, { ...user, token }).subscribe({
       next : () => this.loadUsers(),
       error: () => {
         this.notifier.showError('Hubo un error agregar el usuario');
@@ -44,8 +47,8 @@ export class UsersService {
     })
   }
 
-  updateUser(id : number, user : IUserCU) : void {
-    this.httpClient.put(this.url + "/" + id, user).subscribe({
+  updateUser(id : number, token : string,  user : IUserCU) : void {
+    this.httpClient.put(this.url + "/" + id, { ...user, token }).subscribe({
       next : () => this.loadUsers(),
       error: () => {
         this.notifier.showError('Hubo un error actualizar el usuario');
