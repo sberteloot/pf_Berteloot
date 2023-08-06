@@ -25,6 +25,10 @@ import { HomeComponent } from "./pages/home/home.component";
         // /dashboard/users
         path: 'users',
         loadChildren: () => import('./pages/users/users.module').then((m) => m.UsersModule)
+      },
+      {
+        path: '**',
+        redirectTo: 'home'
       }
     ]),
   ],

@@ -21,8 +21,8 @@ export class LoginComponent {
 
   login() : void {
     
-    if(this.emailFormControl.invalid){
-      this.emailFormControl.markAllAsTouched();
+    if(this.loginFormGroup.invalid){
+      this.loginFormGroup.markAllAsTouched();
     }else{
       this.authService.login(this.emailFormControl.value || '', this.passwordFormControl.value || '')
     }

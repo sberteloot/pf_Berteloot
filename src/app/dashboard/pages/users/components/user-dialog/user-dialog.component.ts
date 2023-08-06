@@ -69,6 +69,8 @@ export class UserDialogComponent {
     enviarDialog(){
       if(!this.userFormGroupModel.invalid){
         this.dialogRef.close(this.userFormGroupModel.value);
+      } else {
+        this.userFormGroupModel.markAllAsTouched();
       }
     }
   

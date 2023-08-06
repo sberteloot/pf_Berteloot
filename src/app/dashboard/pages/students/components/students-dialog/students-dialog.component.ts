@@ -47,7 +47,7 @@ export class StudentsDialogComponent implements OnInit {
   });
 
   maxDateBirthPicker : Date = new Date();
-  dialogTitle : string = "Nuevo Alumno";
+  dialogTitle : string = "Nuevo Estudiante";
 
   constructor(private dialogRef: MatDialogRef<StudentsDialogComponent>,
               @Inject(MAT_DIALOG_DATA) private data? : IStudent){
@@ -57,7 +57,7 @@ export class StudentsDialogComponent implements OnInit {
                   this.surnameFormControl.setValue(data.surname);
                   this.emailFormControl.setValue(data.email);
                   this.birthFormControl.setValue(data.birth);
-                  this.dialogTitle = "Modificar Alumno";
+                  this.dialogTitle = "Modificar Estudiante";
                 }
             }
 
@@ -72,6 +72,9 @@ export class StudentsDialogComponent implements OnInit {
   enviarDialog(){
     if(!this.studentFormGroupModel.invalid){
       this.dialogRef.close(this.studentFormGroupModel.value);
+    }
+    else{
+      this.studentFormGroupModel.markAllAsTouched();
     }
   }
 

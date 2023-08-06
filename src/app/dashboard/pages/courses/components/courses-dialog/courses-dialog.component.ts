@@ -66,7 +66,10 @@ export class CoursesDialogComponent {
     enviarDialog(){
       if(!this.courseFormGroupModel.invalid){
         this.dialogRef.close(this.courseFormGroupModel.value);
+      } else {
+        this.courseFormGroupModel.markAllAsTouched();
       }
+
     }
   
     clearForm(){
