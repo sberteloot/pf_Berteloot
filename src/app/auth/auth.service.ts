@@ -55,6 +55,18 @@ export class AuthService {
     )
   }
 
+  isAdmin(): Observable<boolean> {
+    return this.httpClient.get<IUser[]>(this.urlUsers, {
+      params: {
+        token: localStorage.getItem('token') || '',
+      }
+    }).pipe(
+      map((usersResult) => {        
+        return usersResult[0].role === "ADMIN"
+      })
+    )
+  }
+
   getAuthObservable() : Observable<IUser | null> {
     return this._authUser$.asObservable();
   }
