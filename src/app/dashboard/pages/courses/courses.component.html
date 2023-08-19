@@ -1,10 +1,11 @@
 <div class="table-responsive__button">
-    <button mat-mini-fab color="primary" (click)="openDialog()">
+    <button *ngIf="userAuthIsAdmin" mat-mini-fab color="primary" (click)="openDialog()">
         <mat-icon>event_note</mat-icon>
     </button>
 </div>
 <app-courses-list
     [arrayCourses]="(arrayCourses | async) || []"
+    [userAuthIsAdmin]="userAuthIsAdmin"
     (onDeleteCourse)="onDeleteCourse($event)"
     (onEditCourse)="onEditCourse($event)"    
     (onDetailCourse)="onDetailCourse($event)"

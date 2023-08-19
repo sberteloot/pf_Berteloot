@@ -42,12 +42,12 @@
                 </button>                
 
                 <!-- Button EDIT -->
-                <button  (click)="onEditCourse.emit(course)" mat-icon-button>
+                <button *ngIf="userAuthIsAdmin" (click)="onEditCourse.emit(course)" mat-icon-button>
                     <mat-icon>edit</mat-icon>
                 </button>                
                 
                 <!-- Button DELETE -->
-                <button  (click)="onDeleteCourse.emit(course)" mat-icon-button color="warn">
+                <button *ngIf="userAuthIsAdmin" (click)="onDeleteCourse.emit(course)" mat-icon-button color="warn">
                     <mat-icon>delete</mat-icon>
                 </button>
 

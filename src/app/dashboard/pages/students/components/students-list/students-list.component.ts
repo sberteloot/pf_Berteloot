@@ -12,6 +12,9 @@ export class StudentsListComponent {
   @Input()
   arrayStudents: IStudent[] = [];
 
+  @Input()
+  userAuthIsAdmin : boolean = false;  
+
   @Output()
   onDeleteStudent = new EventEmitter<IStudent>();
 

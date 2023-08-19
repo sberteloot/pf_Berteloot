@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsDialogComponent } from './components/students-dialog/students-dialog.component';
 import { IStudent } from './models/student';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { ConfirmdialogComponent } from 'src/app/shared/components/confirmdialog/confirmdialog.component';
 import { StudentsService } from '../students/students.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-students',
@@ -15,13 +16,19 @@ import { Router } from '@angular/router';
 export class StudentsComponent {
   
   arrayStudents: Observable<IStudent[]>;
+  userAuthIsAdmin : boolean = false;
 
   constructor(private studentDialog : MatDialog, 
               private confirmDialog: MatDialog,
               private studentsService: StudentsService,
-              private router: Router){
+              private router: Router,
+              private authService: AuthService){
     this.studentsService.loadStudents();
     this.arrayStudents = this.studentsService.getStudents();
+
+    this.authService.isAdmin().pipe(take(1)).subscribe({
+      next : isAdmin => this.userAuthIsAdmin = isAdmin
+    })    
   } 
 
   openDialog(){

@@ -11,6 +11,9 @@ export class CoursesListComponent {
   @Input()
   arrayCourses : ICourse[] = [];
 
+  @Input()
+  userAuthIsAdmin : boolean = false;
+
   @Output()
   onDeleteCourse = new EventEmitter<ICourse>();
 
