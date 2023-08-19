@@ -45,6 +45,19 @@
                     {{ error | errorsFormsControls }}
                 </mat-error>
             </mat-form-field>
+
+            <!-- CAMPO ROLE -->
+            <mat-form-field>
+                <mat-label>Rol</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option value="ADMIN" >Administrador</mat-option>
+                    <mat-option value="USER" >Usuario</mat-option>
+                </mat-select>
+                <mat-icon [color]="'accent'" matPrefix>3p</mat-icon>
+                <mat-error class="user__dialog_error" *ngFor="let error of roleFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>
             
         </form>
 

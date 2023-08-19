@@ -60,7 +60,8 @@ export class UsersComponent {
               name: user.name,
               email: user.email,
               surname: user.surname,
-              password: user.password
+              password: user.password,
+              role: user.role
             })
           }
         }

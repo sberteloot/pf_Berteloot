@@ -20,5 +20,5 @@ export class UsersListComponent {
   @Output()
   onEditUser = new EventEmitter<IUser>();
 
-  displayedColumns: string[] = ['id', 'namesurname', 'email', 'actions']; 
+  displayedColumns: string[] = ['id', 'namesurname', 'email', 'role', 'actions']; 
 }

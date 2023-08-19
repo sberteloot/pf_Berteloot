@@ -40,12 +40,18 @@ export class UserDialogComponent {
         Validators.maxLength(15)
       ]
     );
+    roleFormControl = new FormControl<string | null>(null, 
+      [
+        Validators.required
+      ]
+    );    
   
     userFormGroupModel : FormGroup = new FormGroup({
       name : this.nameFormControl,
       surname : this.surnameFormControl,
       email : this.emailFormControl,
-      password : this.passwordFormControl
+      password : this.passwordFormControl,
+      role : this.roleFormControl
     });
   
     dialogTitle : string = "Nuevo Usuario";
@@ -58,6 +64,7 @@ export class UserDialogComponent {
           this.surnameFormControl.setValue(data.surname);
           this.emailFormControl.setValue(data.email);
           this.passwordFormControl.setValue(data.password);
+          this.roleFormControl.setValue(data.role);
           this.dialogTitle = "Modificar Usuario";
         }
     }

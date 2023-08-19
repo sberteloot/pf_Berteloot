@@ -6,9 +6,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorsFormsControlsPipe } from '../pipes/errors-forms-controls.pipe';
 import { NamesurnamePipe } from '../pipes/namesurname.pipe';
@@ -32,6 +33,8 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatOptionModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
   exports: [
@@ -44,6 +47,8 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatOptionModule,
+    MatSelectModule,
     ReactiveFormsModule,
     TitlesDirective,
     NamesurnamePipe,

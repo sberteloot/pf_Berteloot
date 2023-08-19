@@ -2,7 +2,8 @@ export interface IUserCU {
     name : string,
     surname : string,
     email : string,
-    password : string    
+    password : string,
+    role : 'ADMIN' | 'USER'
 }
 
 export interface IUser extends IUserCU {

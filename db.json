@@ -6,6 +6,7 @@
       "surname": "Administrador",
       "password": "1234567",
       "token": "gYRCf3aXyiSxLxooYdT1",
+      "role": "ADMIN",
       "id": 1
     },
     {
@@ -14,6 +15,7 @@
       "surname": "Berteloot",
       "password": "1234567",
       "token": "sQ4A4Usj0QkrXw5ff1sm",
+      "role": "USER",
       "id": 2
     },
     {
@@ -22,6 +24,7 @@
       "email": "rrey@gmail.com",
       "password": "1234567",
       "token": "pbULmlJisy8gwOquLz2s",
+      "role": "USER",
       "id": 3
     }
   ],
