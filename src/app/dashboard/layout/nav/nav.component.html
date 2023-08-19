@@ -4,7 +4,6 @@
         <a routerLink="home" mat-list-item>Inicio
             <mat-icon matListItemIcon>home</mat-icon>
         </a>
-
         <a routerLink="students" mat-list-item>Estudiantes
             <mat-icon matListItemIcon>face</mat-icon>
         </a>
@@ -14,7 +13,9 @@
         <a *ngIf="userAuthIsAdmin$ | async" routerLink="users" mat-list-item>Usuarios
             <mat-icon matListItemIcon>person</mat-icon>
         </a>
-
+        <a routerLink="inscriptions" mat-list-item>Inscripciones
+            <mat-icon matListItemIcon>edit_note</mat-icon>
+        </a>
     </mat-nav-list>
     
     <mat-nav-list>

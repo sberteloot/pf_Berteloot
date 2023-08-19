@@ -29,6 +29,11 @@ import { adminGuard } from "../core/guards/admin.guard";
         loadChildren: () => import('./pages/users/users.module').then((m) => m.UsersModule)
       },
       {
+        // /dashboard/inscriptions
+        path: 'inscriptions',
+        loadChildren: () => import('./pages/inscriptions/inscriptions.module').then((m) => m.InscriptionsModule)
+      },      
+      {
         path: '**',
         redirectTo: 'home'
       }
