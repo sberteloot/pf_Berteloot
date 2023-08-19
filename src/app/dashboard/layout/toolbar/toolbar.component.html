@@ -3,5 +3,8 @@
     <button mat-icon-button (click)="drawer?.toggle()" >
         <mat-icon>menu</mat-icon>
     </button>
-    <span appTitles>{{ title }}</span>
+    <main class="toolbar__main">
+        <span appTitles>{{ title }}</span>
+        <span>{{ authUserDisplay }}</span>
+    </main>
 </mat-toolbar>
