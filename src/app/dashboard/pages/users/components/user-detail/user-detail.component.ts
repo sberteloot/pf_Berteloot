@@ -3,6 +3,7 @@ import { UsersService } from '../../users.service';
 import { IUser } from '../../models/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-user-detail',
@@ -29,8 +30,15 @@ export class UserDetailComponent {
 
   getUser(id : number) : void {
     this.usersService.loadUsers();
-    this.usersService.getUserById(id).subscribe({
-      next : (user) => this.user = user
+    this.usersService.getUserById(id).pipe(take(1)).subscribe({
+      next : (user) => {
+        if(user==undefined){
+          this.notifier.showError("No se encontró el usuario con el id " + id);
+          this.router.navigate(['dashboard', 'users']);
+        } else {
+          this.user = user
+        }        
+      }
     })    
   }
 }

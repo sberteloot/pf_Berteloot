@@ -44,10 +44,10 @@
       "id": 2
     },
     {
-      "name": "Alicia",
-      "email": "asanchez@gmail.com",
+      "name": "Thomas",
       "surname": "Sanchez",
-      "birth": "2001-12-22T03:00:00.000Z",
+      "email": "thomas@gmail.com",
+      "birth": "2002-08-01T03:00:00.000Z",
       "id": 3
     }
   ],
@@ -65,23 +65,35 @@
       "description": "Curso de React",
       "start": "2023-09-15T03:00:00.000Z",
       "id": 2
+    },
+    {
+      "name": "Jenkins",
+      "price": 35000,
+      "description": "Administración de Jenkins",
+      "start": "2023-10-01T03:00:00.000Z",
+      "id": 3
     }
   ],
   "inscriptions": [
     {
-      "courseId": 1,
       "studentId": 1,
+      "courseId": 1,
       "id": 1
     },
     {
-      "courseId": 2,
       "studentId": 2,
+      "courseId": 3,
       "id": 2
     },
     {
-      "studentId": 3,
-      "courseId": 1,
+      "studentId": 2,
+      "courseId": 2,
       "id": 3
+    },
+    {
+      "studentId": 1,
+      "courseId": 3,
+      "id": 4
     }
   ]
 }

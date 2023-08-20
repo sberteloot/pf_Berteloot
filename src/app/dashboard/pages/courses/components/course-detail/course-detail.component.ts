@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CoursesService } from '../../courses.service';
 import { ICourse } from '../../models/course';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-course-detail',
@@ -29,9 +30,14 @@ export class CourseDetailComponent {
 
   getCourse(id : number) : void{
     this.coursesService.loadCourses();    
-    this.coursesService.getCuurseById(id).subscribe({
+    this.coursesService.getCuurseById(id).pipe(take(1)).subscribe({
       next: (course) => {
-        this.course = course
+        if(course==undefined){
+          this.notifier.showError("No se encontró el curso con el id " + id);
+          this.router.navigate(['dashboard', 'courses']);
+        } else {
+          this.course = course
+        }
       }
     })
   }

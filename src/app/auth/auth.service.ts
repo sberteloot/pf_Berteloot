@@ -34,7 +34,7 @@ export class AuthService {
           localStorage.setItem('token', authUser.token);
           localStorage.setItem('authUserDisplay', authUser.name + " " + authUser.surname);
         } else {
-          this.notifier.showError('Email o contraseña invalida');
+          this.notifier.showError('Email o password invalidos');
           this._authUser$.next(null);
         }
       },
