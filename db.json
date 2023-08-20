@@ -66,5 +66,17 @@
       "start": "2023-09-15T03:00:00.000Z",
       "id": 2
     }
+  ],
+  "inscriptions": [
+    {
+      "courseId": 1,
+      "studentId": 1,
+      "id": 1
+    },
+    {
+      "courseId": 2,
+      "studentId": 2,
+      "id": 2
+    }    
   ]
 }
