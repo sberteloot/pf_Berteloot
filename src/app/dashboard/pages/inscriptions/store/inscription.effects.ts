@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
-import { Observable, EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { InscriptionActions } from './inscription.actions';
 import { InscriptionsService } from '../inscriptions.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
-
 
 @Injectable()
 export class InscriptionEffects {
 
   constructor(private actions$: Actions, 
-              private inscriptionsService: InscriptionsService) {}
+              private inscriptionsService: InscriptionsService,
+              private notifierService: NotifierService) {}
 
   loadInscriptions$ = createEffect(() => {
     return this.actions$.pipe(
@@ -20,7 +20,10 @@ export class InscriptionEffects {
       concatMap(() =>
         this.inscriptionsService.getInscriptions().pipe(
           map(data => InscriptionActions.loadInscriptionsSuccess({ data })),
-          catchError(error => of(InscriptionActions.loadInscriptionsFailure({ error }))))
+          catchError(error => {
+            this.notifierService.showAnyError(error);
+            return of(InscriptionActions.loadInscriptionsFailure({ error }))
+          }))
       )
     );
   });  

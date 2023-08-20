@@ -74,6 +74,11 @@ export class NotifierService {
       return 'No se pudo establecer la conexión con el Servidor';
     }
 
+    if (err.name === 'HttpErrorResponse' && err.status === 404) {
+      return 'No se encontró el método en el Servidor';
+    }    
+
+
     if (err instanceof HttpErrorResponse) {
       let retorno = this.arrayErrorsHttp[err.status];
       if(retorno === null) message = retorno;
