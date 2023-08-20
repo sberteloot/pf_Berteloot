@@ -7,6 +7,7 @@ import { InscriptionsService } from '../inscriptions.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { StudentsService } from '../../students/students.service';
 import { CoursesService } from '../../courses/courses.service';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class InscriptionEffects {
@@ -15,7 +16,8 @@ export class InscriptionEffects {
               private inscriptionsService: InscriptionsService,
               private studentsService: StudentsService,
               private coursesService: CoursesService,
-              private notifierService: NotifierService) {
+              private notifierService: NotifierService,
+              private store: Store) {
     this.studentsService.loadStudents();
     this.coursesService.loadCourses();
   }
@@ -64,4 +66,22 @@ export class InscriptionEffects {
       )
     );
   });    
+
+  createInscription$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(InscriptionActions.createInscription),
+      concatMap((action) =>
+        this.inscriptionsService.addInscription(action.payload).pipe(
+          map(data => InscriptionActions.createInscriptionSuccess({ data })),
+          catchError(error => of(InscriptionActions.createInscriptionFailure({ error }))))
+      )
+    );
+  });
+
+  createInscriptionSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(InscriptionActions.createInscriptionSuccess),
+      map(() => this.store.dispatch(InscriptionActions.loadInscriptions()))
+    );
+  }, { dispatch: false });
 }

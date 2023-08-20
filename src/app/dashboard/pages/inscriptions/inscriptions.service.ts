@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IInscription } from './models/inscription';
+import { IInscription, IInscriptionCU } from './models/inscription';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,5 +15,9 @@ export class InscriptionsService {
 
   getInscriptions(): Observable<IInscription[]> {
     return this.httpClient.get<IInscription[]>(this.url + '?_expand=course&_expand=student')
+  }
+
+  addInscription(payload:IInscriptionCU): Observable<IInscription>{
+    return this.httpClient.post<IInscription>(this.url, payload);
   }
 }

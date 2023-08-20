@@ -29,18 +29,5 @@ export class InscriptionsComponent implements OnInit {
   openDialog(){
     this.inscriptionDialog
       .open(InscriptionDialogComponent, {panelClass: 'inscription__dialog__panel'})
-      .afterClosed()
-      .subscribe({
-        next : (student) => {
-          if(student){
-            /*this.studentsService.insertStudent({
-              name: student.name,
-              email: student.email,
-              surname: student.surname,
-              birth: student.birth
-            })*/
-          }
-        }
-      });
   }
 }

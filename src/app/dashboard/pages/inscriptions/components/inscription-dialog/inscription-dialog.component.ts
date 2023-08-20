@@ -9,6 +9,7 @@ import { CoursesService } from '../../../courses/courses.service';
 import { Store } from '@ngrx/store';
 import { InscriptionActions } from '../../store/inscription.actions';
 import { selectCourses, selectStudents } from '../../store/inscription.selectors';
+import { IInscriptionCU } from '../../models/inscription';
 
 @Component({
   selector: 'app-inscription-dialog',
@@ -49,7 +50,8 @@ export class InscriptionDialogComponent implements OnInit {
 
   enviarDialog() : void{
     if(!this.inscriptionFormGroup.invalid){
-      //this.dialogRef.close(this.studentFormGroupModel.value);
+      this.store.dispatch(InscriptionActions.createInscription({payload:this.inscriptionFormGroup.getRawValue()}));
+      this.dialogRef.close();
     }
     else{
       this.inscriptionFormGroup.markAllAsTouched();

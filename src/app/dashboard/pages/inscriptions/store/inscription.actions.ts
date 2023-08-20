@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { IInscription } from '../models/inscription';
+import { IInscription, IInscriptionCU } from '../models/inscription';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IStudent } from '../../students/models/student';
 import { ICourse } from '../../courses/models/course';
@@ -18,5 +18,9 @@ export const InscriptionActions = createActionGroup({
     'Load Courses': emptyProps(),
     'Load Courses Success': props<{ data: ICourse[] }>(),
     'Load Courses Failure': props<{ error: HttpErrorResponse }>(),        
+
+    'Create Inscription': props<{payload: IInscriptionCU}>(),
+    'Create Inscription Success': props<{ data: IInscription }>(),
+    'Create Inscription Failure': props<{ error: HttpErrorResponse }>(),            
   }
 });
