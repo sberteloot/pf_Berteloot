@@ -7,6 +7,7 @@ import { selectInscriptions } from './store/inscription.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { InscriptionDialogComponent } from './components/inscription-dialog/inscription-dialog.component';
 import { ConfirmdialogComponent } from 'src/app/shared/components/confirmdialog/confirmdialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inscriptions',
@@ -20,7 +21,8 @@ export class InscriptionsComponent implements OnInit {
 
   constructor(private store: Store,
               private inscriptionDialog: MatDialog,
-              private confirmDialog: MatDialog) {
+              private confirmDialog: MatDialog,
+              private router: Router) {
     this.inscriptions$ = this.store.select(selectInscriptions);
   }
 
@@ -53,7 +55,7 @@ export class InscriptionsComponent implements OnInit {
   }  
 
   onDetailInscription(inscription : IInscription){
-    //this.router.navigate(['dashboard/students', student.id]);
+    this.router.navigate(['dashboard/inscriptions', inscription.id]);
   }
 
 }

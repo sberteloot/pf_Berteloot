@@ -1,1 +1,24 @@
-<p>inscription-detail works!</p>
+<div class="table-responsive__button">
+    <button routerLink=".." mat-mini-fab color="primary">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
+
+<div class="container container__detail">
+
+    <div class="row row__detail">
+        <div class="col col__title">Id:</div>
+        <div class="col">{{ id }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Estudiante:</div>
+        <div class="col">{{ student$ | async }}</div>
+    </div> 
+
+    <div class="row row__detail">
+        <div class="col col__title">Curso:</div>
+        <div class="col">{{ course$ | async }}</div>
+    </div>     
+
+</div>

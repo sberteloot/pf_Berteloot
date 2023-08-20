@@ -77,6 +77,11 @@
       "courseId": 2,
       "studentId": 2,
       "id": 2
+    },
+    {
+      "studentId": 3,
+      "courseId": 1,
+      "id": 3
     }
   ]
 }

@@ -25,6 +25,10 @@ export const InscriptionActions = createActionGroup({
 
     'Delete Inscription': props<{id: number}>(),
     'Delete Inscription Success': props<{ data: boolean }>(),
-    'Delete Inscription Failure': props<{ error: HttpErrorResponse }>(),                
+    'Delete Inscription Failure': props<{ error: HttpErrorResponse }>(),       
+    
+    'Load Inscription Detail': props<{id: number}>(),
+    'Load Inscription Detail Success': props<{ data: IInscription[] }>(),
+    'Load Inscription Detail Failure': props<{ error: HttpErrorResponse }>(),    
   }
 });

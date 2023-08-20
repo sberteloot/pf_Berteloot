@@ -10,12 +10,14 @@ export interface State {
   data : IInscription[];
   students : IStudent[];
   courses : ICourse[];
+  inscriptionDetail : IInscription | null;
 }
 
 export const initialState: State = {
   data: [],
   students: [],
-  courses:[]
+  courses:[],
+  inscriptionDetail:null,
 };
 
 export const reducer = createReducer(
@@ -27,7 +29,7 @@ export const reducer = createReducer(
       data: action.data
     }
   }),
-  on(InscriptionActions.loadInscriptionsFailure, (state, action) => state),
+  on(InscriptionActions.loadInscriptionsFailure, (state) => state),
 
   on(InscriptionActions.loadStudents, state => state),
   on(InscriptionActions.loadStudentsSuccess, (state, action) => {
@@ -36,7 +38,7 @@ export const reducer = createReducer(
       students: action.data
     }
   }),
-  on(InscriptionActions.loadStudentsFailure, (state, action) => state),  
+  on(InscriptionActions.loadStudentsFailure, (state) => state),  
 
   on(InscriptionActions.loadCourses, state => state),
   on(InscriptionActions.loadCoursesSuccess, (state, action) => {
@@ -45,7 +47,16 @@ export const reducer = createReducer(
       courses: action.data
     }
   }),
-  on(InscriptionActions.loadCoursesFailure, (state, action) => state),    
+  on(InscriptionActions.loadCoursesFailure, (state) => state),    
+
+  on(InscriptionActions.loadInscriptionDetail, state => state),
+  on(InscriptionActions.loadInscriptionDetailSuccess, (state, action) => {
+    return{      
+      ...state,
+      inscriptionDetail: action.data[0]
+    }
+  }),
+  on(InscriptionActions.loadInscriptionDetailFailure, (state) => state),      
 );
 
 export const inscriptionFeature = createFeature({

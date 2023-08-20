@@ -14,7 +14,7 @@ export class InscriptionsService {
   constructor(private httpClient : HttpClient) { }
 
   getInscriptions(): Observable<IInscription[]> {
-    return this.httpClient.get<IInscription[]>(this.url + '?_expand=course&_expand=student')
+    return this.httpClient.get<IInscription[]>(this.url + '?_expand=course&_expand=student');
   }
 
   addInscription(payload:IInscriptionCU): Observable<IInscription>{
@@ -23,5 +23,9 @@ export class InscriptionsService {
 
   deleteInscription(id:number):Observable<boolean>{
     return this.httpClient.delete<boolean>(this.url + "/" + id);
+  }
+
+  getInscription(id:number): Observable<IInscription[]> {
+    return this.httpClient.get<IInscription[]>(this.url + '?_expand=course&_expand=student&id=' + id);
   }
 }

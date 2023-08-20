@@ -102,4 +102,19 @@ export class InscriptionEffects {
       map(() => this.store.dispatch(InscriptionActions.loadInscriptions()))
     );
   }, { dispatch: false });  
+
+  loadInscriptionDetail$ = createEffect(() => {
+    return this.actions$.pipe(
+
+      ofType(InscriptionActions.loadInscriptionDetail),
+      concatMap((action) =>
+        this.inscriptionsService.getInscription(action.id).pipe(
+          map(data => InscriptionActions.loadInscriptionDetailSuccess({ data })),
+          catchError(error => {
+            this.notifierService.showAnyError(error);
+            return of(InscriptionActions.loadInscriptionDetailFailure({ error }))
+          }))
+      )
+    );
+  });    
 }

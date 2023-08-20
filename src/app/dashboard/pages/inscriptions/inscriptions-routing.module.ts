@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { InscriptionsComponent } from "./inscriptions.component";
+import { InscriptionDetailComponent } from "./components/inscription-detail/inscription-detail.component";
 
 @NgModule({
   imports: [
@@ -14,8 +15,8 @@ import { InscriptionsComponent } from "./inscriptions.component";
       {
         // /dashboard/inscriptions/:id
         path: ':id',
-        component: InscriptionsComponent,
-        data: {title:'Detalle de la Inscripción'}
+        component: InscriptionDetailComponent,
+        data: {title:'Inscripción'}
       }      
     ])  
   ],

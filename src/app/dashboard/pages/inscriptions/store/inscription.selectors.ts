@@ -10,3 +10,7 @@ export const selectInscriptions = createSelector(selectInscriptionState, (state)
 export const selectStudents = createSelector(selectInscriptionState, (state) => state.students)
 
 export const selectCourses = createSelector(selectInscriptionState, (state) => state.courses)
+
+export const selectInscriptionDetailtStudent = createSelector(selectInscriptionState, (state) => state.inscriptionDetail?.student.name + ' ' + state.inscriptionDetail?.student.surname)
+
+export const selectInscriptionDetailCourse  = createSelector(selectInscriptionState, (state) => state.inscriptionDetail?.course.name)
