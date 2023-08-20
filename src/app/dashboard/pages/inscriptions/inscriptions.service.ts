@@ -20,4 +20,8 @@ export class InscriptionsService {
   addInscription(payload:IInscriptionCU): Observable<IInscription>{
     return this.httpClient.post<IInscription>(this.url, payload);
   }
+
+  deleteInscription(id:number):Observable<boolean>{
+    return this.httpClient.delete<boolean>(this.url + "/" + id);
+  }
 }

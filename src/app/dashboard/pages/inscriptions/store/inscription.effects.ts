@@ -84,4 +84,22 @@ export class InscriptionEffects {
       map(() => this.store.dispatch(InscriptionActions.loadInscriptions()))
     );
   }, { dispatch: false });
+
+  deleteInscription$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(InscriptionActions.deleteInscription),
+      concatMap((action) =>
+        this.inscriptionsService.deleteInscription(action.id).pipe(
+          map(data => InscriptionActions.deleteInscriptionSuccess({ data })),
+          catchError(error => of(InscriptionActions.createInscriptionFailure({ error }))))
+      )
+    );
+  });
+
+  deleteInscriptionSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(InscriptionActions.deleteInscriptionSuccess),
+      map(() => this.store.dispatch(InscriptionActions.loadInscriptions()))
+    );
+  }, { dispatch: false });  
 }
