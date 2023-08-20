@@ -1,1 +1,54 @@
-<p>inscription-dialog works!</p>
+<main class="inscription__dialog">
+    <div>
+        <h1 class="inscription__main__title">Nueva Inscripción</h1>
+
+        <form [formGroup]="inscriptionFormGroup" class="row">
+            
+            <!-- SELECT ESTUDIANTE -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Estudiante</mat-label>
+                <mat-select formControlName="studentId">
+                    <mat-option [value]="student.id"  *ngFor="let student of  students$ | async">
+                    {{ student.name }} - {{ student.surname }}
+                    </mat-option>
+                </mat-select>                
+                <mat-icon [color]="'accent'" matPrefix>person</mat-icon>
+                <mat-error class="inscription__dialog_error" *ngFor="let error of studentIdFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>        
+    
+            <!-- SELECT CURSO -->
+            <mat-form-field  class="mb-3" appearance="outline">
+                <mat-label>Curso</mat-label>
+                <mat-select formControlName="courseId">
+                    <mat-option [value]="course.id"  *ngFor="let course of  courses$ | async">
+                        {{ course.name }} 
+                    </mat-option>
+                </mat-select>                
+                <mat-icon [color]="'accent'" matPrefix>event_note</mat-icon>
+                <mat-error class="inscription__dialog_error" *ngFor="let error of courseIdFormControl.errors | keyvalue">
+                    {{ error | errorsFormsControls }}
+                </mat-error>
+            </mat-form-field>
+    
+        </form>
+    </div>
+    <div class="inscription__dialog__actions">
+
+        <button mat-button (click)="clearForm()" tabindex="-1">
+            <mat-icon>clear</mat-icon>Borrar Datos
+        </button>
+
+        <div>
+            <button mat-button (click)="closeDialog()" tabindex="-1">
+                <mat-icon>cancel</mat-icon> Cancelar
+            </button>
+            
+            <button mat-button class="inscription__dialog__button__active" (click)="enviarDialog()">
+                <mat-icon>save</mat-icon> Guardar
+            </button>
+        </div>
+
+    </div>   
+</main>
