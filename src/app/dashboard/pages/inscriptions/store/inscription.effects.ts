@@ -5,13 +5,20 @@ import { of } from 'rxjs';
 import { InscriptionActions } from './inscription.actions';
 import { InscriptionsService } from '../inscriptions.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { StudentsService } from '../../students/students.service';
+import { CoursesService } from '../../courses/courses.service';
 
 @Injectable()
 export class InscriptionEffects {
 
   constructor(private actions$: Actions, 
               private inscriptionsService: InscriptionsService,
-              private notifierService: NotifierService) {}
+              private studentsService: StudentsService,
+              private coursesService: CoursesService,
+              private notifierService: NotifierService) {
+    this.studentsService.loadStudents();
+    this.coursesService.loadCourses();
+  }
 
   loadInscriptions$ = createEffect(() => {
     return this.actions$.pipe(
@@ -27,4 +34,34 @@ export class InscriptionEffects {
       )
     );
   });  
+
+  loadStudents$ = createEffect(() => {
+    return this.actions$.pipe(
+
+      ofType(InscriptionActions.loadStudents),
+      concatMap(() =>        
+        this.studentsService.getStudents().pipe(
+          map(data => InscriptionActions.loadStudentsSuccess({ data })),
+          catchError(error => {
+            this.notifierService.showAnyError(error);
+            return of(InscriptionActions.loadStudentsFailure({ error }))
+          }))
+      )
+    );
+  });  
+
+  loadCourses$ = createEffect(() => {
+    return this.actions$.pipe(
+
+      ofType(InscriptionActions.loadCourses),
+      concatMap(() =>
+        this.coursesService.getCourses().pipe(
+          map(data => InscriptionActions.loadCoursesSuccess({ data })),
+          catchError(error => {
+            this.notifierService.showAnyError(error);
+            return of(InscriptionActions.loadCoursesFailure({ error }))
+          }))
+      )
+    );
+  });    
 }
