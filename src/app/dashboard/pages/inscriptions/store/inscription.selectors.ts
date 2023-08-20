@@ -6,5 +6,3 @@ export const selectInscriptionState = createFeatureSelector<fromInscription.Stat
 );
 
 export const selectInscriptions = createSelector(selectInscriptionState, (state) => state.data)
-
-export const selectCountInscriptions = createSelector(selectInscriptionState, (state) => state.data.length)

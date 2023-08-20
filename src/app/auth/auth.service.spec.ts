@@ -16,6 +16,7 @@ describe('AuthService', () => {
     "surname": "Administrador",
     "password": "1234567",
     "token": "gYRCf3aXyiSxLxooYdT1",
+    "role": "USER",
     "id": 1
   };
 
