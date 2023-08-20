@@ -14,5 +14,3 @@ export const selectCourses = createSelector(selectInscriptionState, (state) => s
 export const selectInscriptionDetailtStudent = createSelector(selectInscriptionState, (state) => state.inscriptionDetail?.student !== undefined ? state.inscriptionDetail?.student.name + ' ' + state.inscriptionDetail?.student.surname : ' ')
 
 export const selectInscriptionDetailCourse  = createSelector(selectInscriptionState, (state) => state.inscriptionDetail?.course.name)
-
-export const selectInscriptionDetailExists  = createSelector(selectInscriptionState, (state) => state.inscriptionDetail !== null)
